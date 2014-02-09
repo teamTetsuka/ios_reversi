@@ -6,6 +6,28 @@
 
 #import <Availability.h>
 
+#define COLS 8
+#define ROWS 8
+#define CELL_SIZE 30
+#define STONE_SIZE 16
+
+typedef enum{
+    STONE_NONE,
+    STONE_BLACK,
+    STONE_WHITE
+} EStoneType;
+
+typedef enum{
+    DIR_ABOVE,
+    DIR_BELOW,
+    DIR_LEFT,
+    DIR_RIGHT,
+    DIR_ABOVELEFT,
+    DIR_ABOVERIGHT,
+    DIR_BELOWLEFT,
+    DIR_BELOWRIGHT
+} EDirection;
+
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif

@@ -7,8 +7,14 @@
 //
 
 #import "ReversiViewController.h"
+#import "ReversiGame.h"
+#import "ReversiView.h"
+#import "ReversiGesuture.h"
 
 @interface ReversiViewController ()
+{
+    ReversiGame *_game;
+}
 
 @end
 
@@ -17,13 +23,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    _game = [[ReversiGame alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:_game.view];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [_game.gesture touchesBegan:touches view:_game.view];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [_game.gesture touchesMoved:touches view:_game.view];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [_game.gesture touchesEnded:touches view:_game.view];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

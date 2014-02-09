@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42D8338718A5F18F00F53B7E /* ReversiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D8338618A5F18F00F53B7E /* ReversiView.m */; };
+		42D8338A18A5F57B00F53B7E /* ReversiGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D8338918A5F57B00F53B7E /* ReversiGame.m */; };
+		42D8338F18A5F82400F53B7E /* ReversiSceneOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D8338E18A5F82400F53B7E /* ReversiSceneOperation.m */; };
+		42D8339218A5F8B200F53B7E /* ReversiSceneReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D8339118A5F8B200F53B7E /* ReversiSceneReverse.m */; };
+		42D8339518A6026A00F53B7E /* ReversiMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D8339418A6026A00F53B7E /* ReversiMap.m */; };
+		42D8339818A602AD00F53B7E /* ReversiPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D8339718A602AD00F53B7E /* ReversiPosition.m */; };
 		B06B0CBD18A5ED7F004426A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B0CBC18A5ED7F004426A9 /* Foundation.framework */; };
 		B06B0CBF18A5ED7F004426A9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B0CBE18A5ED7F004426A9 /* CoreGraphics.framework */; };
 		B06B0CC118A5ED7F004426A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B0CC018A5ED7F004426A9 /* UIKit.framework */; };
@@ -22,6 +28,10 @@
 		B06B0CE118A5ED7F004426A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B0CC018A5ED7F004426A9 /* UIKit.framework */; };
 		B06B0CE918A5ED80004426A9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B06B0CE718A5ED80004426A9 /* InfoPlist.strings */; };
 		B06B0CEB18A5ED80004426A9 /* ios_reversiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0CEA18A5ED80004426A9 /* ios_reversiTests.m */; };
+		B06B0CF618A6129A004426A9 /* ReversiGesuture.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0CF518A6129A004426A9 /* ReversiGesuture.m */; };
+		B06B0CF918A65B4C004426A9 /* ReversiLib.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0CF818A65B4C004426A9 /* ReversiLib.m */; };
+		B06B0CFC18A708C0004426A9 /* ReversiDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0CFB18A708C0004426A9 /* ReversiDraw.m */; };
+		B06B0CFF18A71845004426A9 /* ReversiReverseCountMap.m in Sources */ = {isa = PBXBuildFile; fileRef = B06B0CFE18A71845004426A9 /* ReversiReverseCountMap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42D8338518A5F18F00F53B7E /* ReversiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiView.h; sourceTree = "<group>"; };
+		42D8338618A5F18F00F53B7E /* ReversiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiView.m; sourceTree = "<group>"; };
+		42D8338818A5F57B00F53B7E /* ReversiGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiGame.h; sourceTree = "<group>"; };
+		42D8338918A5F57B00F53B7E /* ReversiGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiGame.m; sourceTree = "<group>"; };
+		42D8338C18A5F5FA00F53B7E /* ReversiScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReversiScene.h; sourceTree = "<group>"; };
+		42D8338D18A5F82400F53B7E /* ReversiSceneOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiSceneOperation.h; sourceTree = "<group>"; };
+		42D8338E18A5F82400F53B7E /* ReversiSceneOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiSceneOperation.m; sourceTree = "<group>"; };
+		42D8339018A5F8B200F53B7E /* ReversiSceneReverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiSceneReverse.h; sourceTree = "<group>"; };
+		42D8339118A5F8B200F53B7E /* ReversiSceneReverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiSceneReverse.m; sourceTree = "<group>"; };
+		42D8339318A6026A00F53B7E /* ReversiMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiMap.h; sourceTree = "<group>"; };
+		42D8339418A6026A00F53B7E /* ReversiMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiMap.m; sourceTree = "<group>"; };
+		42D8339618A602AD00F53B7E /* ReversiPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiPosition.h; sourceTree = "<group>"; };
+		42D8339718A602AD00F53B7E /* ReversiPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiPosition.m; sourceTree = "<group>"; };
 		B06B0CB918A5ED7F004426A9 /* ios_reversi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_reversi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B06B0CBC18A5ED7F004426A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B06B0CBE18A5ED7F004426A9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,6 +78,14 @@
 		B06B0CE618A5ED80004426A9 /* ios_reversiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ios_reversiTests-Info.plist"; sourceTree = "<group>"; };
 		B06B0CE818A5ED80004426A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B06B0CEA18A5ED80004426A9 /* ios_reversiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_reversiTests.m; sourceTree = "<group>"; };
+		B06B0CF418A6129A004426A9 /* ReversiGesuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiGesuture.h; sourceTree = "<group>"; };
+		B06B0CF518A6129A004426A9 /* ReversiGesuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiGesuture.m; sourceTree = "<group>"; };
+		B06B0CF718A65B4C004426A9 /* ReversiLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiLib.h; sourceTree = "<group>"; };
+		B06B0CF818A65B4C004426A9 /* ReversiLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiLib.m; sourceTree = "<group>"; };
+		B06B0CFA18A708C0004426A9 /* ReversiDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiDraw.h; sourceTree = "<group>"; };
+		B06B0CFB18A708C0004426A9 /* ReversiDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiDraw.m; sourceTree = "<group>"; };
+		B06B0CFD18A71845004426A9 /* ReversiReverseCountMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiReverseCountMap.h; sourceTree = "<group>"; };
+		B06B0CFE18A71845004426A9 /* ReversiReverseCountMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiReverseCountMap.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +112,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42D8338B18A5F5BA00F53B7E /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				42D8338C18A5F5FA00F53B7E /* ReversiScene.h */,
+				42D8338D18A5F82400F53B7E /* ReversiSceneOperation.h */,
+				42D8338E18A5F82400F53B7E /* ReversiSceneOperation.m */,
+				42D8339018A5F8B200F53B7E /* ReversiSceneReverse.h */,
+				42D8339118A5F8B200F53B7E /* ReversiSceneReverse.m */,
+			);
+			name = scene;
+			sourceTree = "<group>";
+		};
 		B06B0CB018A5ED7F004426A9 = {
 			isa = PBXGroup;
 			children = (
@@ -114,13 +157,30 @@
 		B06B0CC218A5ED7F004426A9 /* ios_reversi */ = {
 			isa = PBXGroup;
 			children = (
+				B06B0CD718A5ED7F004426A9 /* Images.xcassets */,
+				B06B0CD118A5ED7F004426A9 /* Main_iPad.storyboard */,
+				B06B0CCE18A5ED7F004426A9 /* Main_iPhone.storyboard */,
 				B06B0CCB18A5ED7F004426A9 /* ReversiAppDelegate.h */,
 				B06B0CCC18A5ED7F004426A9 /* ReversiAppDelegate.m */,
-				B06B0CCE18A5ED7F004426A9 /* Main_iPhone.storyboard */,
-				B06B0CD118A5ED7F004426A9 /* Main_iPad.storyboard */,
+				B06B0CFA18A708C0004426A9 /* ReversiDraw.h */,
+				B06B0CFB18A708C0004426A9 /* ReversiDraw.m */,
+				42D8338818A5F57B00F53B7E /* ReversiGame.h */,
+				42D8338918A5F57B00F53B7E /* ReversiGame.m */,
+				B06B0CF418A6129A004426A9 /* ReversiGesuture.h */,
+				B06B0CF518A6129A004426A9 /* ReversiGesuture.m */,
+				B06B0CF718A65B4C004426A9 /* ReversiLib.h */,
+				B06B0CF818A65B4C004426A9 /* ReversiLib.m */,
+				42D8339318A6026A00F53B7E /* ReversiMap.h */,
+				42D8339418A6026A00F53B7E /* ReversiMap.m */,
+				42D8339618A602AD00F53B7E /* ReversiPosition.h */,
+				42D8339718A602AD00F53B7E /* ReversiPosition.m */,
+				B06B0CFD18A71845004426A9 /* ReversiReverseCountMap.h */,
+				B06B0CFE18A71845004426A9 /* ReversiReverseCountMap.m */,
+				42D8338518A5F18F00F53B7E /* ReversiView.h */,
+				42D8338618A5F18F00F53B7E /* ReversiView.m */,
 				B06B0CD418A5ED7F004426A9 /* ReversiViewController.h */,
 				B06B0CD518A5ED7F004426A9 /* ReversiViewController.m */,
-				B06B0CD718A5ED7F004426A9 /* Images.xcassets */,
+				42D8338B18A5F5BA00F53B7E /* scene */,
 				B06B0CC318A5ED7F004426A9 /* Supporting Files */,
 			);
 			path = ios_reversi;
@@ -254,9 +314,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D8338A18A5F57B00F53B7E /* ReversiGame.m in Sources */,
+				B06B0CFF18A71845004426A9 /* ReversiReverseCountMap.m in Sources */,
+				42D8339818A602AD00F53B7E /* ReversiPosition.m in Sources */,
+				B06B0CFC18A708C0004426A9 /* ReversiDraw.m in Sources */,
 				B06B0CD618A5ED7F004426A9 /* ReversiViewController.m in Sources */,
 				B06B0CC918A5ED7F004426A9 /* main.m in Sources */,
 				B06B0CCD18A5ED7F004426A9 /* ReversiAppDelegate.m in Sources */,
+				42D8338718A5F18F00F53B7E /* ReversiView.m in Sources */,
+				B06B0CF618A6129A004426A9 /* ReversiGesuture.m in Sources */,
+				42D8339518A6026A00F53B7E /* ReversiMap.m in Sources */,
+				42D8338F18A5F82400F53B7E /* ReversiSceneOperation.m in Sources */,
+				42D8339218A5F8B200F53B7E /* ReversiSceneReverse.m in Sources */,
+				B06B0CF918A65B4C004426A9 /* ReversiLib.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +545,7 @@
 				B06B0CF018A5ED80004426A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B06B0CF118A5ED80004426A9 /* Build configuration list for PBXNativeTarget "ios_reversiTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +554,7 @@
 				B06B0CF318A5ED80004426A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
