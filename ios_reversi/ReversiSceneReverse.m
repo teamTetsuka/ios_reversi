@@ -87,6 +87,7 @@
 {
     CGRect viewRect = game.view.bounds;
     CGRect stageRect = [ReversiLib stageRect:viewRect];
+    EStoneType opponent = [ReversiLib opponent:_player];
     
     [ReversiDraw drawStage:stageRect];
     
@@ -111,7 +112,7 @@
             CGRect stoneRect = [ReversiLib stoneRect:cellRect];
             if ([_reverseMap getInt:pos]) {
                 [ReversiDraw drawStone:stoneRect
-                                  type:[game.stageMap getInt:pos]
+                                  type:opponent
                                reverse:_count / 20.0];
             }
         }
