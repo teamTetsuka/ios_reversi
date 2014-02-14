@@ -66,26 +66,26 @@
 
 -(void)stageInit
 {
-    _stageMap = [[ReversiMap alloc] initWithDefaultValue:@(STONE_NONE)];
+    _boardMap = [[ReversiMap alloc] initWithDefaultValue:@(STONE_NONE)];
     {
         ReversiPosition* pos = [ReversiPosition posWithRow:ROWS / 2 - 1
                                                        col:COLS / 2 - 1];
-        [_stageMap put:pos value:@(STONE_WHITE)];
+        [_boardMap put:pos value:@(STONE_WHITE)];
     }
     {
         ReversiPosition* pos = [ReversiPosition posWithRow:ROWS / 2
                                                        col:COLS / 2];
-        [_stageMap put:pos value:@(STONE_WHITE)];
+        [_boardMap put:pos value:@(STONE_WHITE)];
     }
     {
         ReversiPosition* pos = [ReversiPosition posWithRow:ROWS / 2 - 1
                                                        col:COLS / 2];
-        [_stageMap put:pos value:@(STONE_BLACK)];
+        [_boardMap put:pos value:@(STONE_BLACK)];
     }
     {
         ReversiPosition* pos = [ReversiPosition posWithRow:ROWS / 2
                                                        col:COLS / 2 - 1];
-        [_stageMap put:pos value:@(STONE_BLACK)];
+        [_boardMap put:pos value:@(STONE_BLACK)];
     }
 }
 

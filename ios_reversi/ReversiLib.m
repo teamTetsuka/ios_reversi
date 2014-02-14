@@ -25,7 +25,7 @@
     }
 }
 
-+ (CGRect)stageRect:(CGRect)viewRect
++ (CGRect)boardRect:(CGRect)viewRect
 {
     int w = COLS * CELL_SIZE;
     int h = ROWS * CELL_SIZE;
@@ -34,10 +34,10 @@
                       w, h);
 }
 
-+ (CGRect)cellRect:(CGRect)stageRect pos:(ReversiPosition *)pos
++ (CGRect)cellRect:(CGRect)boardRect pos:(ReversiPosition *)pos
 {
-    return CGRectMake(stageRect.origin.x + pos.col * CELL_SIZE,
-                      stageRect.origin.y + pos.row * CELL_SIZE,
+    return CGRectMake(boardRect.origin.x + pos.col * CELL_SIZE,
+                      boardRect.origin.y + pos.row * CELL_SIZE,
                       CELL_SIZE, CELL_SIZE);
 }
 

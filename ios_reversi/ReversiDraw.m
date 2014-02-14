@@ -13,21 +13,21 @@
 
 @implementation ReversiDraw
 
-+ (void)drawStage:(CGRect)stageRect
++ (void)drawBoard:(CGRect)boardRect
 {
     [[UIColor colorWithRed:0 green:1 blue:0 alpha:1] setStroke];
     for(int r = 0;r <= ROWS;r++){
-        int y = stageRect.origin.y + (CELL_SIZE * r);
+        int y = boardRect.origin.y + (CELL_SIZE * r);
         UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:CGPointMake(stageRect.origin.x, y)];
-        [path addLineToPoint:CGPointMake(stageRect.origin.x + stageRect.size.width, y)];
+        [path moveToPoint:CGPointMake(boardRect.origin.x, y)];
+        [path addLineToPoint:CGPointMake(boardRect.origin.x + boardRect.size.width, y)];
         [path stroke];
     }
     for(int c = 0;c <= COLS;c++){
-        int x = stageRect.origin.x + (CELL_SIZE * c);
+        int x = boardRect.origin.x + (CELL_SIZE * c);
         UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:CGPointMake(x, stageRect.origin.y)];
-        [path addLineToPoint:CGPointMake(x, stageRect.origin.y + stageRect.size.height)];
+        [path moveToPoint:CGPointMake(x, boardRect.origin.y)];
+        [path addLineToPoint:CGPointMake(x, boardRect.origin.y + boardRect.size.height)];
         [path stroke];
     }    
 }
@@ -93,44 +93,44 @@
     [path fill];
 }
 
-+ (void)drawTurnIndicate:(CGRect)stageRect
-                    turn:(EStoneType)turn
-                  myself:(EStoneType)myself
++ (void)drawTurnIndicate:(CGRect)boardRect
+           currentPlayer:(EStoneType)currentPlayer
+                  player:(EStoneType)player
                    phase:(float)phase
 {
-    if (myself == STONE_BLACK) {
-        CGRect rect = CGRectMake(stageRect.origin.x,
-                                 stageRect.origin.y - STONE_SIZE - 10,
+    if (player == STONE_BLACK) {
+        CGRect rect = CGRectMake(boardRect.origin.x,
+                                 boardRect.origin.y - STONE_SIZE - 10,
                                  STONE_SIZE + 46, STONE_SIZE + 4);
         [[UIColor colorWithRed:1 green:0 blue:0 alpha:1] setStroke];
         UIBezierPath* path = [UIBezierPath bezierPathWithRect:rect];
         [path stroke];
     }
-    if (myself == STONE_WHITE) {
-        CGRect rect = CGRectMake(stageRect.origin.x + stageRect.size.width
+    if (player == STONE_WHITE) {
+        CGRect rect = CGRectMake(boardRect.origin.x + boardRect.size.width
                                  - STONE_SIZE - 46,
-                                 stageRect.origin.y - STONE_SIZE - 10,
+                                 boardRect.origin.y - STONE_SIZE - 10,
                                  STONE_SIZE + 46, STONE_SIZE + 4);
         [[UIColor colorWithRed:1 green:0 blue:0 alpha:1] setStroke];
         UIBezierPath* path = [UIBezierPath bezierPathWithRect:rect];
         [path stroke];
     }
     {
-        CGRect rect = CGRectMake(stageRect.origin.x + 6,
-                                 stageRect.origin.y - STONE_SIZE - 8,
+        CGRect rect = CGRectMake(boardRect.origin.x + 6,
+                                 boardRect.origin.y - STONE_SIZE - 8,
                                  STONE_SIZE, STONE_SIZE);
         [ReversiDraw drawStone:rect type:STONE_BLACK];
     }
     {
-        CGRect rect = CGRectMake(stageRect.origin.x + stageRect.size.width
+        CGRect rect = CGRectMake(boardRect.origin.x + boardRect.size.width
                                  - STONE_SIZE - 6,
-                                 stageRect.origin.y - STONE_SIZE - 8,
+                                 boardRect.origin.y - STONE_SIZE - 8,
                                  STONE_SIZE, STONE_SIZE);
         [ReversiDraw drawStone:rect type:STONE_WHITE];
     }
-    if (turn == STONE_BLACK) {
-        int x = stageRect.origin.x + STONE_SIZE + 6 + 5;
-        int y = stageRect.origin.y - STONE_SIZE - 8;
+    if (currentPlayer == STONE_BLACK) {
+        int x = boardRect.origin.x + STONE_SIZE + 6 + 5;
+        int y = boardRect.origin.y - STONE_SIZE - 8;
         float alpha = phase;
         for (int i = 0; i < 3; i++) {
             UIBezierPath *path = [UIBezierPath bezierPath];
@@ -144,9 +144,9 @@
             x += 10;
         }
     }
-    if (turn == STONE_WHITE) {
-        int x = stageRect.origin.x + stageRect.size.width - STONE_SIZE - 11;
-        int y = stageRect.origin.y - STONE_SIZE - 8;
+    if (currentPlayer == STONE_WHITE) {
+        int x = boardRect.origin.x + boardRect.size.width - STONE_SIZE - 11;
+        int y = boardRect.origin.y - STONE_SIZE - 8;
         float alpha = phase;
         for (int i = 0; i < 3; i++) {
             UIBezierPath *path = [UIBezierPath bezierPath];
@@ -162,13 +162,13 @@
     }
 }
 
-+ (void)drawStoneCount:(CGRect)stageRect stageMap:(id)stageMap
++ (void)drawStoneCount:(CGRect)boardRect boardMap:(id)boardMap
 {
     int blackCount = 0;
     int whiteCount = 0;
     for (int r = 0; r < ROWS; r++) {
         for (int c = 0; c < COLS; c++) {
-            EStoneType t = [stageMap getInt:[ReversiPosition posWithRow:r col:c]];
+            EStoneType t = [boardMap getInt:[ReversiPosition posWithRow:r col:c]];
             if (t == STONE_BLACK) {
                 blackCount++;
             }else if (t == STONE_WHITE){
@@ -177,23 +177,23 @@
         }
     }
     {
-        CGRect rect = CGRectMake(stageRect.origin.x,
-                                 stageRect.origin.y + stageRect.size.height + 4,
+        CGRect rect = CGRectMake(boardRect.origin.x,
+                                 boardRect.origin.y + boardRect.size.height + 4,
                                  30, 30);
         [[NSString stringWithFormat:@"%d", blackCount] drawInRect:rect
                                            withAttributes:[ReversiDraw centerAttrs]];
     }
     {
-        CGRect rect = CGRectMake(stageRect.origin.x + stageRect.size.width - 30,
-                                 stageRect.origin.y + stageRect.size.height + 4,
+        CGRect rect = CGRectMake(boardRect.origin.x + boardRect.size.width - 30,
+                                 boardRect.origin.y + boardRect.size.height + 4,
                                  30, 30);
         [[NSString stringWithFormat:@"%d", whiteCount] drawInRect:rect
                                            withAttributes:[ReversiDraw centerAttrs]];
     }
     {
-        int w = (stageRect.size.width - 60) * blackCount / (ROWS * COLS);
-        CGRect rect = CGRectMake(stageRect.origin.x + 30,
-                                 stageRect.origin.y + stageRect.size.height + 9,
+        int w = (boardRect.size.width - 60) * blackCount / (ROWS * COLS);
+        CGRect rect = CGRectMake(boardRect.origin.x + 30,
+                                 boardRect.origin.y + boardRect.size.height + 9,
                                  w, 10);
         UIBezierPath* path = [UIBezierPath bezierPathWithRect:rect];
         [[UIColor colorWithRed:0 green:0 blue:0 alpha:1] setFill];
@@ -202,9 +202,9 @@
         [path stroke];
     }
     {
-        int w = (stageRect.size.width - 60) * whiteCount / (ROWS * COLS);
-        CGRect rect = CGRectMake(stageRect.origin.x + stageRect.size.width - 30 - w,
-                                 stageRect.origin.y + stageRect.size.height + 9,
+        int w = (boardRect.size.width - 60) * whiteCount / (ROWS * COLS);
+        CGRect rect = CGRectMake(boardRect.origin.x + boardRect.size.width - 30 - w,
+                                 boardRect.origin.y + boardRect.size.height + 9,
                                  w, 10);
         UIBezierPath* path = [UIBezierPath bezierPathWithRect:rect];
         [[UIColor colorWithRed:1 green:1 blue:1 alpha:1] setFill];

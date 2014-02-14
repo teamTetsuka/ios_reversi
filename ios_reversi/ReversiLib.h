@@ -11,8 +11,8 @@
 
 @interface ReversiLib : NSObject
 +(EStoneType)opponent:(EStoneType)player;
-+(CGRect)stageRect:(CGRect)viewRect;
-+(CGRect)cellRect:(CGRect)stageRect pos:(ReversiPosition*)pos;
++(CGRect)boardRect:(CGRect)viewRect;
++(CGRect)cellRect:(CGRect)boardRect pos:(ReversiPosition*)pos;
 +(CGRect)stoneRect:(CGRect)cellRect;
 + (ReversiPosition*)selectedPos:(CGRect)stageRect location:(CGPoint)location;
 @end

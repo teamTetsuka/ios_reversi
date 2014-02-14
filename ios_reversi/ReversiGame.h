@@ -12,7 +12,7 @@
 @class ReversiGesuture;
 
 @interface ReversiGame : NSObject
-@property (nonatomic, strong)ReversiMap *stageMap;
+@property (nonatomic, strong)ReversiMap *boardMap;
 @property (nonatomic, strong)ReversiGesuture *gesture;
 @property (nonatomic, readonly)ReversiView* view;
 @property (nonatomic, assign)float effectPhase;

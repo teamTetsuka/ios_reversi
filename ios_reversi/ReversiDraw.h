@@ -10,14 +10,14 @@
 @class ReversiMap;
 
 @interface ReversiDraw : NSObject
-+(void)drawStage:(CGRect)stageRect;
++(void)drawBoard:(CGRect)boardRect;
 +(void)drawStone:(CGRect)stoneRect type:(EStoneType)type reverse:(float)reverse;
 +(void)drawStone:(CGRect)stoneRect type:(EStoneType)type;
 +(void)drawSelectableCell:(CGRect)cellRect phase:(float)phase;
 +(void)drawSelectedCell:(CGRect)cellRect;
-+(void)drawTurnIndicate:(CGRect)stageRect
-                   turn:(EStoneType)turn
-                 myself:(EStoneType)myself
++(void)drawTurnIndicate:(CGRect)boardRect
+          currentPlayer:(EStoneType)currentPlayer
+                 player:(EStoneType)player
                   phase:(float)phase;
-+(void)drawStoneCount:(CGRect)stageRect stageMap:(ReversiMap*)stageMap;
++(void)drawStoneCount:(CGRect)boardRect boardMap:(ReversiMap*)boardMap;
 @end

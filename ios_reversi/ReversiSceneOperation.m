@@ -38,7 +38,7 @@
 - (id<ReversiScene>)begin:(ReversiGame *)game
 {
     _reverseCountMap = [[ReversiReverseCountMap alloc]
-                        initWithStageMap:game.stageMap
+                        initWithStageMap:game.boardMap
                         player:_player];
     game.effectPhase = 0;
     return self;
@@ -47,11 +47,11 @@
 - (id<ReversiScene>)nextFrame:(ReversiGame *)game
 {
     CGRect viewRect = game.view.bounds;
-    CGRect stageRect = [ReversiLib stageRect:viewRect];
+    CGRect boardRect = [ReversiLib boardRect:viewRect];
     
     ReversiPosition* decidedPos = nil;
     if (game.gesture.decide){
-        decidedPos = [ReversiLib selectedPos:stageRect location:game.gesture.location];
+        decidedPos = [ReversiLib selectedPos:boardRect location:game.gesture.location];
         id __reverseCountMap = [_reverseCountMap get:decidedPos];
         if (__reverseCountMap != [NSNull null]) {
             return [[ReversiSceneReverse alloc] initWithPlayer:_player
@@ -66,18 +66,18 @@
 - (void)draw:(ReversiGame *)game
 {
     CGRect viewRect = game.view.bounds;
-    CGRect stageRect = [ReversiLib stageRect:viewRect];
+    CGRect boardRect = [ReversiLib boardRect:viewRect];
     
     ReversiPosition* selectedPos = nil;
     if (game.gesture.touching){
-        selectedPos = [ReversiLib selectedPos:stageRect location:game.gesture.location];
+        selectedPos = [ReversiLib selectedPos:boardRect location:game.gesture.location];
     }
     for(int r = 0;r < ROWS;r++){
         for(int c = 0;c < COLS;c++){
             ReversiPosition* pos = [ReversiPosition posWithRow:r col:c];
             id tmp = [_reverseCountMap get:pos];
             if (tmp != [NSNull null]) {
-                CGRect cellRect = [ReversiLib cellRect:stageRect pos:pos];
+                CGRect cellRect = [ReversiLib cellRect:boardRect pos:pos];
                 if ([pos isEqual:selectedPos]) {
                     [ReversiDraw drawSelectedCell:cellRect];
                 }else{
@@ -87,23 +87,23 @@
         }
     }
     
-    [ReversiDraw drawStage:stageRect];
+    [ReversiDraw drawBoard:boardRect];
     
     for(int r = 0;r < ROWS;r++){
         for(int c = 0;c < COLS;c++){
             ReversiPosition* pos = [ReversiPosition posWithRow:r col:c];
-            CGRect cellRect = [ReversiLib cellRect:stageRect pos:pos];
+            CGRect cellRect = [ReversiLib cellRect:boardRect pos:pos];
             CGRect stoneRect = [ReversiLib stoneRect:cellRect];
             [ReversiDraw drawStone:stoneRect
-                              type:[game.stageMap getInt:pos]];
+                              type:[game.boardMap getInt:pos]];
         }
     }
     
-    [ReversiDraw drawTurnIndicate:stageRect
-                             turn:_player
-                           myself:STONE_BLACK
+    [ReversiDraw drawTurnIndicate:boardRect
+                    currentPlayer:_player
+                           player:STONE_BLACK
                             phase:game.effectPhase];
-    [ReversiDraw drawStoneCount:stageRect stageMap:game.stageMap];
+    [ReversiDraw drawStoneCount:boardRect boardMap:game.boardMap];
 }
 
 @end
