@@ -10,6 +10,7 @@
 #define ROWS 8
 #define CELL_SIZE 30
 #define STONE_SIZE 16
+#define SERVER_URL @"http://isjuku-tt-reversi.appspot.com"
 
 typedef enum{
     STONE_NONE,

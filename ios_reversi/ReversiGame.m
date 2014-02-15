@@ -12,36 +12,97 @@
 #import "ReversiGesuture.h"
 #import "ReversiPosition.h"
 #import "ReversiScene.h"
-#import "ReversiSceneOperation.h"
+#import "ReversiSceneWaitStart.h"
+#import "ReversiSceneWait.h"
+
+@interface DataSender : NSObject<NSURLConnectionDataDelegate>
+{
+    ReversiGame *_game;
+    NSURLConnection* _connection;
+}
+@end
 
 @interface ReversiGame()
 {
+    NSURLConnection *_connection;
+    DataSender *_dataSender;
+    NSString *_sessionId;
     id<ReversiScene> _scene;
     id<ReversiScene> _nextScene;
+    int _serialNo;
+}
+- (void)serialUpdate:(int)serialNo;
+@end
+
+
+@implementation DataSender
+- (id)initWithGame:(ReversiGame*)game
+{
+    self = [super init];
+    if (self){
+        _game = game;
+    }
+    return self;
+}
+- (void)send:(NSString*)sessionId player:(EStoneType)player pos:(ReversiPosition *)pos
+{
+    NSURLRequest *request =
+    [NSURLRequest requestWithURL:
+     [NSURL URLWithString:
+      [NSString stringWithFormat:@"%@/p?id=%@&p=%d&r=%d&c=%d",
+       SERVER_URL, sessionId, player, pos.row, pos.col]]];
+    _connection = [NSURLConnection connectionWithRequest:request delegate:self];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    NSDictionary *_data = [NSJSONSerialization JSONObjectWithData:data
+                                                          options:0
+                                                            error:nil];
+    [_game serialUpdate:[_data[@"n"] integerValue]];
 }
 @end
 
 @implementation ReversiGame
 
 - (id)initWithFrame:(CGRect)frame
+          sessionId:(NSString *)sessionId
+             player:(EStoneType)player
 {
     self = [super init];
     if (self){
+        _sessionId = sessionId;
+        _player = player;
+        _effectPhase = 0;
+        _serialNo = 0;
         _view = [[ReversiView alloc]
                  initWithFrame:CGRectMake(0, 20,
                                           frame.size.width,
                                           frame.size.height - 20)
                  game:self];
-        _nextScene = [[ReversiSceneOperation alloc]
-                      initWithPlayer:STONE_BLACK];
         _gesture = [[ReversiGesuture alloc] init];
-        [self stageInit];
-        _effectPhase = 0;
+        _dataSender = [[DataSender alloc] init];
+        _receiptData = nil;
+        [self boardSetup];
+        switch (_player) {
+            case STONE_BLACK:
+                _nextScene = [[ReversiSceneWaitStart alloc] init];
+                break;
+            case STONE_WHITE:
+                _nextScene = [[ReversiSceneWait alloc] initWithPlayer:STONE_BLACK];
+                break;
+            default:
+                break;
+        }
         [NSTimer scheduledTimerWithTimeInterval:0.02f
                                          target:self
                                        selector:@selector(nextFrame:)
                                        userInfo:NULL
                                         repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                         target:self
+                                       selector:@selector(poll:)
+                                       userInfo:NULL
+                                        repeats:NO];
     }
     return self;
 }
@@ -59,34 +120,73 @@
     if (_effectPhase > 1) _effectPhase = 0;
 }
 
+-(void)poll:(NSTimer*)timer
+{
+    NSURLRequest *request =
+    [NSURLRequest requestWithURL:[NSURL URLWithString:
+     [NSString stringWithFormat:@"%@/g?id=%@", SERVER_URL, _sessionId]]];
+    _connection = [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    _receiptData = [NSJSONSerialization JSONObjectWithData:data
+                                                   options:0
+                                                     error:nil];
+    NSLog(@"t=%@, p=%@", _receiptData[@"t"], _receiptData[@"p"]);
+    [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                     target:self
+                                   selector:@selector(poll:)
+                                   userInfo:NULL
+                                    repeats:NO];
+}
+
+- (void)send:(EStoneType)player pos:(ReversiPosition *)pos
+{
+    [_dataSender send:_sessionId player:player pos:pos];
+}
+
+- (BOOL)isSerialUpdated
+{
+    if (_receiptData == nil) {
+        return false;
+    }else{
+        return _serialNo < [_receiptData[@"n"] integerValue];
+    }
+}
+
+- (void)serialUpdate
+{
+    if (_receiptData != nil) {
+        [self serialUpdate:[_receiptData[@"n"] integerValue]];
+    }
+}
+
+- (void)serialUpdate:(int)serialNo
+{
+    _serialNo = serialNo;
+}
+
 -(void)draw
 {
     [_scene draw:self];
 }
 
--(void)stageInit
+-(void)boardSetup
 {
     _boardMap = [[ReversiMap alloc] initWithDefaultValue:@(STONE_NONE)];
-    {
-        ReversiPosition* pos = [ReversiPosition posWithRow:ROWS / 2 - 1
-                                                       col:COLS / 2 - 1];
-        [_boardMap put:pos value:@(STONE_WHITE)];
-    }
-    {
-        ReversiPosition* pos = [ReversiPosition posWithRow:ROWS / 2
-                                                       col:COLS / 2];
-        [_boardMap put:pos value:@(STONE_WHITE)];
-    }
-    {
-        ReversiPosition* pos = [ReversiPosition posWithRow:ROWS / 2 - 1
-                                                       col:COLS / 2];
-        [_boardMap put:pos value:@(STONE_BLACK)];
-    }
-    {
-        ReversiPosition* pos = [ReversiPosition posWithRow:ROWS / 2
-                                                       col:COLS / 2 - 1];
-        [_boardMap put:pos value:@(STONE_BLACK)];
-    }
+    [_boardMap put:[ReversiPosition posWithRow:ROWS / 2 - 1
+                                           col:COLS / 2 - 1]
+             value:@(STONE_BLACK)];
+    [_boardMap put:[ReversiPosition posWithRow:ROWS / 2
+                                           col:COLS / 2]
+             value:@(STONE_BLACK)];
+    [_boardMap put:[ReversiPosition posWithRow:ROWS / 2 - 1
+                                           col:COLS / 2]
+             value:@(STONE_WHITE)];
+    [_boardMap put:[ReversiPosition posWithRow:ROWS / 2
+                                           col:COLS / 2 - 1]
+             value:@(STONE_WHITE)];
 }
 
 @end

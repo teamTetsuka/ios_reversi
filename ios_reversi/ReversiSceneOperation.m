@@ -20,7 +20,7 @@
 @interface ReversiSceneOperation()
 {
     EStoneType _player;
-    ReversiReverseCountMap* _reverseCountMap;
+    ReversiReverseCountMap *_reverseCountMap;
 }
 @end
 
@@ -49,13 +49,15 @@
     CGRect viewRect = game.view.bounds;
     CGRect boardRect = [ReversiLib boardRect:viewRect];
     
-    ReversiPosition* decidedPos = nil;
+    ReversiPosition* pos = nil;
     if (game.gesture.decide){
-        decidedPos = [ReversiLib selectedPos:boardRect location:game.gesture.location];
-        id __reverseCountMap = [_reverseCountMap get:decidedPos];
+        pos = [ReversiLib selectedPos:boardRect
+                                    location:game.gesture.location];
+        id __reverseCountMap = [_reverseCountMap get:pos];
         if (__reverseCountMap != [NSNull null]) {
+            [game send:_player pos:pos];
             return [[ReversiSceneReverse alloc] initWithPlayer:_player
-                                                    decidedPos:decidedPos
+                                                    decidedPos:pos
                                                reverseCountMap:__reverseCountMap];
         }
     }
@@ -70,7 +72,8 @@
     
     ReversiPosition* selectedPos = nil;
     if (game.gesture.touching){
-        selectedPos = [ReversiLib selectedPos:boardRect location:game.gesture.location];
+        selectedPos = [ReversiLib selectedPos:boardRect
+                                     location:game.gesture.location];
     }
     for(int r = 0;r < ROWS;r++){
         for(int c = 0;c < COLS;c++){
@@ -81,7 +84,8 @@
                 if ([pos isEqual:selectedPos]) {
                     [ReversiDraw drawSelectedCell:cellRect];
                 }else{
-                    [ReversiDraw drawSelectableCell:cellRect phase:game.effectPhase];
+                    [ReversiDraw drawSelectableCell:cellRect
+                                              phase:game.effectPhase];
                 }
             }
         }
@@ -101,7 +105,7 @@
     
     [ReversiDraw drawTurnIndicate:boardRect
                     currentPlayer:_player
-                           player:STONE_BLACK
+                           player:game.player
                             phase:game.effectPhase];
     [ReversiDraw drawStoneCount:boardRect boardMap:game.boardMap];
 }

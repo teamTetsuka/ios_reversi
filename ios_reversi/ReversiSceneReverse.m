@@ -15,6 +15,7 @@
 #import "ReversiLib.h"
 #import "ReversiDraw.h"
 #import "ReversiSceneOperation.h"
+#import "ReversiSceneWait.h"
 
 @interface ReversiSceneReverse()
 {
@@ -75,8 +76,13 @@
                 }
             }
         }
-        return [[ReversiSceneOperation alloc]
-                initWithPlayer:[ReversiLib opponent:_player]];
+        EStoneType opponent = [ReversiLib opponent:_player];
+        if (opponent == game.player) {
+            return [[ReversiSceneOperation alloc] initWithPlayer:opponent];
+        }else{
+            return [[ReversiSceneWait alloc] initWithPlayer:opponent];
+        }
+        
     }else{
         _count++;
         return nil;
@@ -120,7 +126,7 @@
     
     [ReversiDraw drawTurnIndicate:boardRect
                     currentPlayer:_player
-                           player:STONE_BLACK
+                           player:game.player
                             phase:game.effectPhase];
     [ReversiDraw drawStoneCount:boardRect boardMap:game.boardMap];
 }

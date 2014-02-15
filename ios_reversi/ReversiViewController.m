@@ -23,7 +23,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _game = [[ReversiGame alloc] initWithFrame:self.view.bounds];
+    
+    NSDictionary *data;
+    {
+        NSURLRequest *request =
+         [NSURLRequest requestWithURL:[NSURL URLWithString:
+                          [NSString stringWithFormat:@"%@/s", SERVER_URL]]];
+        NSData *_data =
+         [NSURLConnection sendSynchronousRequest:request
+                               returningResponse:nil error:nil];
+        data = [NSJSONSerialization JSONObjectWithData:_data
+                                               options:0
+                                                 error:nil];
+        NSLog(@"id=%@, p=%@", data[@"id"], data[@"p"]);
+    }
+    _game = [[ReversiGame alloc] initWithFrame:self.view.bounds
+                                     sessionId:data[@"id"]
+                                        player:[data[@"p"] integerValue]];
     [self.view addSubview:_game.view];
 }
 

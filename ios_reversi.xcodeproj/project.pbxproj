@@ -13,6 +13,8 @@
 		42D8339218A5F8B200F53B7E /* ReversiSceneReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D8339118A5F8B200F53B7E /* ReversiSceneReverse.m */; };
 		42D8339518A6026A00F53B7E /* ReversiMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D8339418A6026A00F53B7E /* ReversiMap.m */; };
 		42D8339818A602AD00F53B7E /* ReversiPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D8339718A602AD00F53B7E /* ReversiPosition.m */; };
+		B016FF0C18AE4FA9004D0867 /* ReversiSceneWaitStart.m in Sources */ = {isa = PBXBuildFile; fileRef = B016FF0B18AE4FA9004D0867 /* ReversiSceneWaitStart.m */; };
+		B016FF0F18AEF25A004D0867 /* ReversiSceneWait.m in Sources */ = {isa = PBXBuildFile; fileRef = B016FF0E18AEF25A004D0867 /* ReversiSceneWait.m */; };
 		B06B0CBD18A5ED7F004426A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B0CBC18A5ED7F004426A9 /* Foundation.framework */; };
 		B06B0CBF18A5ED7F004426A9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B0CBE18A5ED7F004426A9 /* CoreGraphics.framework */; };
 		B06B0CC118A5ED7F004426A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B06B0CC018A5ED7F004426A9 /* UIKit.framework */; };
@@ -58,6 +60,10 @@
 		42D8339418A6026A00F53B7E /* ReversiMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiMap.m; sourceTree = "<group>"; };
 		42D8339618A602AD00F53B7E /* ReversiPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiPosition.h; sourceTree = "<group>"; };
 		42D8339718A602AD00F53B7E /* ReversiPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiPosition.m; sourceTree = "<group>"; };
+		B016FF0A18AE4FA9004D0867 /* ReversiSceneWaitStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiSceneWaitStart.h; sourceTree = "<group>"; };
+		B016FF0B18AE4FA9004D0867 /* ReversiSceneWaitStart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiSceneWaitStart.m; sourceTree = "<group>"; };
+		B016FF0D18AEF25A004D0867 /* ReversiSceneWait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversiSceneWait.h; sourceTree = "<group>"; };
+		B016FF0E18AEF25A004D0867 /* ReversiSceneWait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversiSceneWait.m; sourceTree = "<group>"; };
 		B06B0CB918A5ED7F004426A9 /* ios_reversi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_reversi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B06B0CBC18A5ED7F004426A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B06B0CBE18A5ED7F004426A9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -120,6 +126,10 @@
 				42D8338E18A5F82400F53B7E /* ReversiSceneOperation.m */,
 				42D8339018A5F8B200F53B7E /* ReversiSceneReverse.h */,
 				42D8339118A5F8B200F53B7E /* ReversiSceneReverse.m */,
+				B016FF0A18AE4FA9004D0867 /* ReversiSceneWaitStart.h */,
+				B016FF0B18AE4FA9004D0867 /* ReversiSceneWaitStart.m */,
+				B016FF0D18AEF25A004D0867 /* ReversiSceneWait.h */,
+				B016FF0E18AEF25A004D0867 /* ReversiSceneWait.m */,
 			);
 			name = scene;
 			sourceTree = "<group>";
@@ -263,6 +273,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = individual;
 				TargetAttributes = {
+					B06B0CB818A5ED7F004426A9 = {
+						DevelopmentTeam = 4VWR32Y8KS;
+					};
 					B06B0CDC18A5ED7F004426A9 = {
 						TestTargetID = B06B0CB818A5ED7F004426A9;
 					};
@@ -322,11 +335,13 @@
 				B06B0CC918A5ED7F004426A9 /* main.m in Sources */,
 				B06B0CCD18A5ED7F004426A9 /* ReversiAppDelegate.m in Sources */,
 				42D8338718A5F18F00F53B7E /* ReversiView.m in Sources */,
+				B016FF0F18AEF25A004D0867 /* ReversiSceneWait.m in Sources */,
 				B06B0CF618A6129A004426A9 /* ReversiGesuture.m in Sources */,
 				42D8339518A6026A00F53B7E /* ReversiMap.m in Sources */,
 				42D8338F18A5F82400F53B7E /* ReversiSceneOperation.m in Sources */,
 				42D8339218A5F8B200F53B7E /* ReversiSceneReverse.m in Sources */,
 				B06B0CF918A65B4C004426A9 /* ReversiLib.m in Sources */,
+				B016FF0C18AE4FA9004D0867 /* ReversiSceneWaitStart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,10 +478,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ios_reversi/ios_reversi-Prefix.pch";
 				INFOPLIST_FILE = "ios_reversi/ios_reversi-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -476,10 +494,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ios_reversi/ios_reversi-Prefix.pch";
 				INFOPLIST_FILE = "ios_reversi/ios_reversi-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
