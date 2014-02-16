@@ -15,7 +15,7 @@
 #import "ReversiSceneWaitStart.h"
 #import "ReversiSceneWait.h"
 
-@interface DataSender : NSObject<NSURLConnectionDataDelegate>
+@interface PutRequestSender : NSObject<NSURLConnectionDataDelegate>
 {
     ReversiGame *_game;
     NSURLConnection* _connection;
@@ -25,7 +25,7 @@
 @interface ReversiGame()
 {
     NSURLConnection *_connection;
-    DataSender *_dataSender;
+    PutRequestSender *_putRequestSender;
     NSString *_sessionId;
     id<ReversiScene> _scene;
     id<ReversiScene> _nextScene;
@@ -35,7 +35,7 @@
 @end
 
 
-@implementation DataSender
+@implementation PutRequestSender
 - (id)initWithGame:(ReversiGame*)game
 {
     self = [super init];
@@ -80,7 +80,7 @@
                                           frame.size.height - 20)
                  game:self];
         _gesture = [[ReversiGesuture alloc] init];
-        _dataSender = [[DataSender alloc] init];
+        _putRequestSender = [[PutRequestSender alloc] init];
         _receiptData = nil;
         [self boardSetup];
         switch (_player) {
@@ -143,7 +143,7 @@
 
 - (void)send:(EStoneType)player pos:(ReversiPosition *)pos
 {
-    [_dataSender send:_sessionId player:player pos:pos];
+    [_putRequestSender send:_sessionId player:player pos:pos];
 }
 
 - (BOOL)isSerialUpdated
