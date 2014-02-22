@@ -17,7 +17,6 @@
 
 @interface PutRequestSender : NSObject<NSURLConnectionDataDelegate>
 {
-    int nn;
     ReversiGame *_game;
     NSURLConnection* _connection;
 }
@@ -25,7 +24,6 @@
 
 @interface ReversiGame()
 {
-    int nn;
     NSURLConnection *_connection;
     PutRequestSender *_putRequestSender;
     NSString *_sessionId;
@@ -42,19 +40,17 @@
 {
     self = [super init];
     if (self){
-        nn = 0;
         _game = game;
     }
     return self;
 }
 - (void)send:(NSString*)sessionId player:(EStoneType)player pos:(ReversiPosition *)pos
 {
-    nn++;
     NSURLRequest *request =
     [NSURLRequest requestWithURL:
      [NSURL URLWithString:
-      [NSString stringWithFormat:@"%@/p?id=%@&p=%d&r=%d&c=%d&nn=%d",
-       SERVER_URL, sessionId, player, pos.row, pos.col, nn]]];
+      [NSString stringWithFormat:@"%@/p?id=%@&p=%d&r=%d&c=%d&rnd=%ld",
+       SERVER_URL, sessionId, player, pos.row, pos.col, random()]]];
     _connection = [NSURLConnection connectionWithRequest:request delegate:self];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -74,7 +70,6 @@
 {
     self = [super init];
     if (self){
-        nn = 0;
         _sessionId = sessionId;
         _player = player;
         _effectPhase = 0;
@@ -127,10 +122,9 @@
 
 -(void)poll:(NSTimer*)timer
 {
-    nn++;
     NSURLRequest *request =
     [NSURLRequest requestWithURL:[NSURL URLWithString:
-     [NSString stringWithFormat:@"%@/g?id=%@&nn=%d", SERVER_URL, _sessionId, nn]]];
+     [NSString stringWithFormat:@"%@/g?id=%@&rnd=%ld", SERVER_URL, _sessionId, random()]]];
     _connection = [NSURLConnection connectionWithRequest:request delegate:self];
 }
 

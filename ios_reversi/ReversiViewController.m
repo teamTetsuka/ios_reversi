@@ -28,7 +28,7 @@
     {
         NSURLRequest *request =
          [NSURLRequest requestWithURL:[NSURL URLWithString:
-                          [NSString stringWithFormat:@"%@/s", SERVER_URL]]];
+                          [NSString stringWithFormat:@"%@/s?rnd=%ld", SERVER_URL, random()]]];
         NSData *_data =
          [NSURLConnection sendSynchronousRequest:request
                                returningResponse:nil error:nil];
