@@ -22,8 +22,8 @@
 
 - (id<ReversiScene>)nextFrame:(ReversiGame *)game
 {
-    if (game.receiptData != nil &&
-        [game.receiptData[@"pc"] integerValue] == 2) {
+    if ([game isSerialUpdated]){
+        [game serialUpdate];
         return [[ReversiSceneOperation alloc] initWithPlayer:STONE_BLACK];
     }
     return nil;

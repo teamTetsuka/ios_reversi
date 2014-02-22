@@ -17,6 +17,7 @@
 
 @interface PutRequestSender : NSObject<NSURLConnectionDataDelegate>
 {
+    int nn;
     ReversiGame *_game;
     NSURLConnection* _connection;
 }
@@ -24,6 +25,7 @@
 
 @interface ReversiGame()
 {
+    int nn;
     NSURLConnection *_connection;
     PutRequestSender *_putRequestSender;
     NSString *_sessionId;
@@ -40,17 +42,19 @@
 {
     self = [super init];
     if (self){
+        nn = 0;
         _game = game;
     }
     return self;
 }
 - (void)send:(NSString*)sessionId player:(EStoneType)player pos:(ReversiPosition *)pos
 {
+    nn++;
     NSURLRequest *request =
     [NSURLRequest requestWithURL:
      [NSURL URLWithString:
-      [NSString stringWithFormat:@"%@/p?id=%@&p=%d&r=%d&c=%d",
-       SERVER_URL, sessionId, player, pos.row, pos.col]]];
+      [NSString stringWithFormat:@"%@/p?id=%@&p=%d&r=%d&c=%d&nn=%d",
+       SERVER_URL, sessionId, player, pos.row, pos.col, nn]]];
     _connection = [NSURLConnection connectionWithRequest:request delegate:self];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -70,6 +74,7 @@
 {
     self = [super init];
     if (self){
+        nn = 0;
         _sessionId = sessionId;
         _player = player;
         _effectPhase = 0;
@@ -122,9 +127,10 @@
 
 -(void)poll:(NSTimer*)timer
 {
+    nn++;
     NSURLRequest *request =
     [NSURLRequest requestWithURL:[NSURL URLWithString:
-     [NSString stringWithFormat:@"%@/g?id=%@", SERVER_URL, _sessionId]]];
+     [NSString stringWithFormat:@"%@/g?id=%@&nn=%d", SERVER_URL, _sessionId, nn]]];
     _connection = [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
@@ -133,7 +139,7 @@
     _receiptData = [NSJSONSerialization JSONObjectWithData:data
                                                    options:0
                                                      error:nil];
-    NSLog(@"t=%@, p=%@", _receiptData[@"t"], _receiptData[@"p"]);
+    NSLog(@"n=%@, p=%@", _receiptData[@"n"], _receiptData[@"p"]);
     [NSTimer scheduledTimerWithTimeInterval:1.0f
                                      target:self
                                    selector:@selector(poll:)
